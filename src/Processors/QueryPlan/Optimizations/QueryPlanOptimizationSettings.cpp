@@ -77,6 +77,7 @@ namespace Setting
     extern const SettingsBool use_skip_indexes_on_data_read;
     extern const SettingsUInt64 allow_experimental_parallel_reading_from_replicas;
     extern const SettingsNonZeroUInt64 max_parallel_replicas;
+    extern const SettingsJoinOrderAlgorithm query_plan_optimize_join_order_algorithm;
 }
 
 namespace ServerSetting
@@ -191,6 +192,10 @@ QueryPlanOptimizationSettings::QueryPlanOptimizationSettings(
     join_runtime_filter_exact_values_limit = from[Setting::join_runtime_filter_exact_values_limit];
     join_runtime_bloom_filter_bytes = from[Setting::join_runtime_bloom_filter_bytes];
     join_runtime_bloom_filter_hash_functions = from[Setting::join_runtime_bloom_filter_hash_functions];
+
+    query_plan_optimize_join_order_algorithm = from[Setting::query_plan_optimize_join_order_algorithm];
+    if (query_plan_optimize_join_order_algorithm.empty())
+        query_plan_optimize_join_order_algorithm.push_back(JoinOrderAlgorithm::GREEDY); /// Use greedy by default
 
     max_threads = from[Setting::max_threads];
 }

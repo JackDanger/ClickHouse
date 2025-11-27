@@ -57,6 +57,7 @@ const VersionToSettingsChangesMap & getSettingsChangesHistory()
             {"delta_lake_snapshot_start_version", -1, -1, "New setting."},
             {"delta_lake_snapshot_end_version", -1, -1, "New setting."},
             {"optimize_inverse_dictionary_lookup", false, true, "New setting"},
+            {"query_plan_optimize_join_order_algorithm", "greedy", "greedy", "New experimentsl setting."},
         });
         addSettingsChanges(settings_changes_history, "25.11",
         {
