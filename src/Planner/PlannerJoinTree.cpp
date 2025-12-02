@@ -2327,7 +2327,7 @@ void tryMakeDirectJoinWithMergeTree(const JoinOperator & join_operator,
     {
         /// We need to analyze index again with new condition
         lookup_reading_step->setAnalyzedResult(nullptr);
-        /// Hand-constructed filter dag has same hash key, so disable cache
+        /// Hand-constructed filter dag has same hash key each time, so disable cache
         lookup_reading_step->disableQueryConditionCache();
         /// initializePipeline is done multiple times concurrently, so not to remove parts snapshot
         lookup_reading_step->disableMergeTreePartsSnapshotRemoval();
